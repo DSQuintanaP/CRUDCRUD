@@ -9,7 +9,7 @@ namespace CRUDCRUD.Data
         {
             
         }
-        DbSet<Producto> Productos { get; set; }
+        public DbSet<Producto> Productos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,8 +22,7 @@ namespace CRUDCRUD.Data
                 .ValueGeneratedOnAdd();
                 
                 Tabla.Property(columna=> columna.productName).HasMaxLength(80);
-            }
-            );
+            });
         }
 
     }
