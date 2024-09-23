@@ -31,5 +31,26 @@ namespace CRUDCRUD.Controllers
             await _AppDbcontext.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));
         }
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int productID)
+        {
+            Producto producto = await _AppDbcontext.Productos.FirstAsync(employ => employ.prductID == productID);
+            return View(producto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditProduct(Producto producto)
+        {
+            _AppDbcontext.Productos.Update(producto);
+            await _AppDbcontext.SaveChangesAsync();
+            return RedirectToAction(nameof(Lista));
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteProduct(int productID)
+        {
+            Producto producto = await _AppDbcontext.Productos.FirstAsync(employ => employ.prductID == productID);
+            _AppDbcontext.Productos.Remove(producto);
+            await _AppDbcontext.SaveChangesAsync();
+            return RedirectToAction(nameof(Lista));
+        }
     }
 }

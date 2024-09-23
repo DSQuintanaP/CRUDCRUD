@@ -22,13 +22,12 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.prductID</td>
+                        <td>@item.prductID</td> 
                         <td>@item.productName</td>
                         <td>@item.productsInStock</td>
                         <td>
-                            <a asp-action="">Acciones
-
-                            </a>
+                            <a class="btn btn-primary" asp-controller="Producto" asp-action="EditProduct" asp-route-productID="@item.prductID">Editar</a>
+                            <a class="btn btn-danger" asp-controller="Producto" asp-action="DeleteProduct" asp-route-productID="@item.prductID" onclick="return confirmar()">Eliminar</a>
                         </td>
                     </tr>
                 }
@@ -39,3 +38,11 @@
     </div>
 
 </div>
+@section Scripts{
+    <script>
+        function confirmar() {
+            return confirm("Esta seguro de Eliminar el Producto")
+        }
+    </script>
+
+}

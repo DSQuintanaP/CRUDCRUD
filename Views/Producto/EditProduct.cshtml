@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CRUDCRUD.Models.Producto;
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <h2>Editar Producto</h2>
+
+        <form asp-controller="Producto" asp-action="EditProduct" method="post">
+            <input asp-for="prductID" type="hidden" />
+            <div class="mb-3">
+                <label>Nombre Producto</label>
+                <input class="form-control" asp-for="productName" type="text" placeholder="Nombre del Producto" required />
+            </div>
+            <div>
+                <label>Cantidad Producto</label>
+                <input class="form-control" asp-for="productsInStock" type="number" required />
+            </div>
+            <div>
+                <h6></h6>
+                <a class="btn btn-danger" asp-controller="Producto" asp-action="Lista">Volver</a>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
