@@ -8,14 +8,14 @@
     <div class="col-sm-8 offset-sm-2">
         <h2>Crear Producto</h2>
         
-        <form action="/" method="post">
+        <form asp-controller="Producto" asp-action="NewProduct" method="post">
             <div class="mb-3">
                 <label>Nombre Producto</label>
                 <input class="form-control" asp-for="productName" type="text" placeholder="Nombre del Producto" required/>
              </div>
              <div>
                 <label>Cantidad Producto</label>
-                <input class="form-control" asp-for="productsInStock" type="number" name="name" value="" required/>
+                <input class="form-control" asp-for="productsInStock" type="number"  required/>
             </div>
             <div>
                 <h6></h6>

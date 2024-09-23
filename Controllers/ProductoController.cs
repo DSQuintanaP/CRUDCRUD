@@ -24,5 +24,12 @@ namespace CRUDCRUD.Controllers
             
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> NewProduct(Producto producto)
+        {
+            await _AppDbcontext.Productos.AddAsync(producto);
+            await _AppDbcontext.SaveChangesAsync();
+            return RedirectToAction(nameof(Lista));
+        }
     }
 }
