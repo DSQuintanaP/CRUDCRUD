@@ -4,6 +4,7 @@ using CRUDCRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUDCRUD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240926153931_ThirdGear")]
+    partial class ThirdGear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,8 +73,6 @@ namespace CRUDCRUD.Migrations
 
                     b.HasKey("IDOrder");
 
-                    b.HasIndex("IDCustomer");
-
                     b.ToTable("compras");
                 });
 
@@ -88,7 +89,12 @@ namespace CRUDCRUD.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ClienteIDCustomer")
+                        .HasColumnType("int");
+
                     b.HasKey("prductID", "IDOrder");
+
+                    b.HasIndex("ClienteIDCustomer");
 
                     b.HasIndex("IDOrder");
 
@@ -116,19 +122,12 @@ namespace CRUDCRUD.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("CRUDCRUD.Models.Compras", b =>
-                {
-                    b.HasOne("CRUDCRUD.Models.Cliente", "Cliente")
-                        .WithMany("Compras")
-                        .HasForeignKey("IDCustomer")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
             modelBuilder.Entity("CRUDCRUD.Models.DetalleCompra", b =>
                 {
+                    b.HasOne("CRUDCRUD.Models.Cliente", null)
+                        .WithMany("DetalleCompras")
+                        .HasForeignKey("ClienteIDCustomer");
+
                     b.HasOne("CRUDCRUD.Models.Compras", "compras")
                         .WithMany("DetalleCompras")
                         .HasForeignKey("IDOrder")
@@ -148,7 +147,7 @@ namespace CRUDCRUD.Migrations
 
             modelBuilder.Entity("CRUDCRUD.Models.Cliente", b =>
                 {
-                    b.Navigation("Compras");
+                    b.Navigation("DetalleCompras");
                 });
 
             modelBuilder.Entity("CRUDCRUD.Models.Compras", b =>
