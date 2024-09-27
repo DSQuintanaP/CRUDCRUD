@@ -10,6 +10,7 @@ namespace CRUDCRUD.Models
         public int prductID { get; set; }
         public string productName { get; set; } = string.Empty;
         public int productsInStock { get; set; } 
+        public decimal productPrice { get; set; }
         public ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
 
     }

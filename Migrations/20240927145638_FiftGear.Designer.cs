@@ -4,6 +4,7 @@ using CRUDCRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUDCRUD.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927145638_FiftGear")]
+    partial class FiftGear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,11 +94,6 @@ namespace CRUDCRUD.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("productName")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
                     b.HasKey("prductID", "IDOrder");
 
                     b.HasIndex("IDOrder");
@@ -129,13 +127,13 @@ namespace CRUDCRUD.Migrations
 
             modelBuilder.Entity("CRUDCRUD.Models.Compras", b =>
                 {
-                    b.HasOne("CRUDCRUD.Models.Cliente", "customerName")
+                    b.HasOne("CRUDCRUD.Models.Cliente", "Cliente")
                         .WithMany("Compras")
                         .HasForeignKey("IDCustomer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("customerName");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("CRUDCRUD.Models.DetalleCompra", b =>

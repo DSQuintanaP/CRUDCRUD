@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CRUDCRUD.Models.Compras>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Compra</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Orden ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IDOrder</td>
+                <td>@item.customerName.customerName</td>
+                <td>@item.fecha</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IDOrder" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IDOrder" class="btn btn-info">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IDOrder" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,7 +14,7 @@ namespace CRUDCRUD.Models
 
         // Propiedad de navegación a Cliente
         [ForeignKey("IDCustomer")]
-        public Cliente Cliente { get; set; } = new Cliente();
+        public Cliente customerName { get; set; } = new Cliente();
 
 
         //public int IDCustomer { get; set; }

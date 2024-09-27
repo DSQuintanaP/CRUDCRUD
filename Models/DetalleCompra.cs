@@ -10,6 +10,7 @@ namespace CRUDCRUD.Models
         // Llave foránea de Producto y parte de la llave primaria compuesta
         [Key, Column(Order = 0)]
         public int prductID { get; set; }
+        public string productName { get; set; } = string.Empty;
 
         // Llave foránea de Compra y parte de la llave primaria compuesta
         [Key, Column(Order = 1)]
@@ -17,6 +18,7 @@ namespace CRUDCRUD.Models
 
         // Propiedad adicional
         public int Cantidad { get; set; }
+        public decimal Precio { get; set; }
 
         // Navegación a Producto
         [ForeignKey("prductID")]
