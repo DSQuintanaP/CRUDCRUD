@@ -57,7 +57,7 @@ namespace CRUDCRUD.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
-            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "Nombre");
+            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName");
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace CRUDCRUD.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "Nombre", compras.IDCustomer);
+            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName", compras.IDCustomer);
             return View(compras);
         }
 
@@ -93,7 +93,7 @@ namespace CRUDCRUD.Controllers
                 return NotFound();
             }
 
-            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "Nombre", compras.IDCustomer);
+            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName", compras.IDCustomer);
             return View(compras);
         }
 
@@ -127,7 +127,7 @@ namespace CRUDCRUD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "Nombre", compras.IDCustomer);
+            ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName", compras.IDCustomer);
             return View(compras);
         }
 

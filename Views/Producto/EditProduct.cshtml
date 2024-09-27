@@ -19,6 +19,10 @@
                 <input class="form-control" asp-for="productsInStock" type="number" required />
             </div>
             <div>
+                <label>Precio Producto</label>
+                <input class="form-control" asp-for="productPrice" type="number" required />
+            </div>
+            <div>
                 <h6></h6>
                 <a class="btn btn-danger" asp-controller="Producto" asp-action="Lista">Volver</a>
                 <button class="btn btn-primary" type="submit">Guardar</button>

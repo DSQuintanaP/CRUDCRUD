@@ -25,6 +25,7 @@
                         <td>@item.prductID</td> 
                         <td>@item.productName</td>
                         <td>@item.productsInStock</td>
+                        <td>@item.productPrice</td>
                         <td>
                             <a class="btn btn-primary" asp-controller="Producto" asp-action="EditProduct" asp-route-productID="@item.prductID">Editar</a>
                             <a class="btn btn-danger" asp-controller="Producto" asp-action="DeleteProduct" asp-route-productID="@item.prductID" onclick="return confirmar()">Eliminar</a>
