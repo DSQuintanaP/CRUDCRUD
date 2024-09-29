@@ -4,6 +4,38 @@
     ViewData["Title"] = "Eliminar Compra";
 }
 
+<h1>Eliminar Compra</h1>
+
+<div>
+    <h4>Cliente: @Model.customerName.customerName</h4>
+    <p>Fecha: @Model.fecha.ToShortDateString()</p>
+    <p>Total: @Model.totalValue</p>
+</div>
+
+<h4>¿Estás seguro que deseas eliminar esta compra?</h4>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="IDOrder" />
+    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+@* @model CRUDCRUD.Models.Compras
+
+@{
+    ViewData["Title"] = "Eliminar Compra";
+}
+
 <h2>Eliminar Compra</h2>
 
 <h3>¿Estás seguro que deseas eliminar esta compra?</h3>
@@ -27,3 +59,4 @@
     <button type="submit" class="btn btn-danger">Eliminar</button> |
     <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </form>
+ *@

@@ -1,6 +1,72 @@
 ﻿@model CRUDCRUD.Models.Compras
 
 @{
+    ViewData["Title"] = "Crear Compra";
+}
+
+<h1>Crear Compra</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="IDCustomer" class="control-label">Cliente</label>
+        <select asp-for="IDCustomer" class="form-control" asp-items="ViewBag.IDCustomer"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="fecha" class="control-label">Fecha</label>
+        <input asp-for="fecha" class="form-control" />
+    </div>
+
+    <h4>Detalles de Compra</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.DetalleCompras.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <select asp-for="DetalleCompras[@i].prductID" class="form-control" asp-items="ViewBag.Productos"></select>
+                    </td>
+                    <td>
+                        <input asp-for="DetalleCompras[@i].Cantidad" class="form-control" />
+                    </td>
+                    <td>
+                        <input asp-for="DetalleCompras[@i].Precio" class="form-control" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+    </div>
+</form>
+
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+@* @model CRUDCRUD.Models.Compras
+
+@{
     ViewData["Title"] = "Create";
 }
 
@@ -40,6 +106,7 @@
                     <div class="form-group">
                         <label>Producto</label>
                         <input name="detalleCompras[0].prductID" class="form-control" />
+
                     </div>
                     <div class="form-group">
                         <label>Cantidad</label>
@@ -87,3 +154,4 @@
         }
     </script>
 }
+ *@

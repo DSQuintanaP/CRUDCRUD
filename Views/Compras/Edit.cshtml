@@ -1,6 +1,79 @@
 ﻿@model CRUDCRUD.Models.Compras
 
 @{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="IDOrder" />
+
+    <div class="form-group">
+        <label asp-for="IDCustomer" class="control-label"></label>
+        <select asp-for="IDCustomer" class="form-control" asp-items="ViewBag.IDCustomer"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="fecha" class="control-label"></label>
+        <input asp-for="fecha" class="form-control" />
+        <span asp-validation-for="fecha" class="text-danger"></span>
+    </div>
+
+    <h3>Detalles de la Compra</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.DetalleCompras.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <select asp-for="DetalleCompras[@i].prductID" class="form-control" asp-items="ViewBag.Productos"></select>
+                    </td>
+                    <td>
+                        <input asp-for="DetalleCompras[@i].Cantidad" class="form-control" />
+                    </td>
+                    <td>
+                        <input asp-for="DetalleCompras[@i].Precio" class="form-control" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+@* @model CRUDCRUD.Models.Compras
+
+@{
     ViewData["Title"] = "Editar Compra";
 }
 
@@ -47,3 +120,4 @@
         <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </div>
 </form>
+ *@

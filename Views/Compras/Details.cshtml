@@ -1,6 +1,51 @@
 ﻿@model CRUDCRUD.Models.Compras
 
 @{
+    ViewData["Title"] = "Detalles de Compra";
+}
+
+<h1>Detalles de Compra</h1>
+
+<div>
+    <h4>Cliente: @Model.customerName.customerName</h4>
+    <p>Fecha: @Model.fecha.ToShortDateString()</p>
+    <p>Total: @Model.totalValue</p>
+</div>
+
+<h4>Productos Comprados</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detalle in Model.DetalleCompras)
+        {
+            <tr>
+                <td>@detalle.Producto.productName</td>
+                <td>@detalle.Cantidad</td>
+                <td>@detalle.Precio</td>
+                <td>@(detalle.Cantidad * detalle.Precio)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
+</p>
+
+
+
+
+
+@* @model CRUDCRUD.Models.Compras
+
+@{
     ViewData["Title"] = "Detalles de la Compra";
 }
 
@@ -35,3 +80,4 @@
     <a asp-action="Edit" asp-route-id="@Model.IDOrder" class="btn btn-warning">Editar</a> |
     <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
 </div>
+ *@

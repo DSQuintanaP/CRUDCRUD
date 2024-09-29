@@ -14,7 +14,7 @@ namespace CRUDCRUD.Data
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Cliente> clientes { get; set; }
         public DbSet<Compras> compras { get; set; }
-        public DbSet<DetalleCompra> detalles { get; set; }
+        public DbSet<DetalleCompra> detallecompra { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,23 +58,36 @@ namespace CRUDCRUD.Data
                 .WithMany(cli => cli.Compras)
                 .HasForeignKey(c => c.IDCustomer);
 
+            // Configuración de las relaciones entre Compras y DetalleCompra
             modelBuilder.Entity<DetalleCompra>()
-                .HasKey(dc => new { dc.prductID, dc.IDOrder });
+                .HasOne(d => d.compras) // Relación con Compras
+                .WithMany(c => c.DetalleCompras) // Una compra tiene muchos detalles
+                .HasForeignKey(d => d.IDOrder); // Llave foránea en DetalleCompra apuntando a IDOrder en Compras
 
+            // Configuración de la relación entre DetalleCompra y Producto
             modelBuilder.Entity<DetalleCompra>()
-                .HasOne(dc => dc.Producto)
-                .WithMany(p => p.DetalleCompras)  // Asegúrate de que haya una propiedad 'DetallesCompra' en Producto
-                .HasForeignKey(dc => dc.prductID);
+                .HasOne(d => d.Producto) // Relación con Producto
+                .WithMany(p => p.DetalleCompras) // Un producto puede estar en muchos detalles
+                .HasForeignKey(d => d.prductID); // Llave foránea en DetalleCompra apuntando a prductID en Producto
 
-            modelBuilder.Entity<DetalleCompra>()
-                .HasOne(dc => dc.compras)
-                .WithMany(c => c.DetalleCompras) // Asegúrate de que haya una propiedad 'DetallesCompra' en Compra
-                .HasForeignKey(dc => dc.IDOrder);
-            modelBuilder.Entity<DetalleCompra>()
-            .Property(c => c.Precio)
-            .HasColumnType("decimal(18,4)");  // Define el tipo de columna SQL
-            modelBuilder.Entity<DetalleCompra>()
-                .Property(col => col.productName).HasMaxLength(80);
+
+            //modelBuilder.Entity<DetalleCompra>()
+            //    .HasKey(dc => new { dc.prductID, dc.IDOrder });
+
+            //modelBuilder.Entity<DetalleCompra>()
+            //    .HasOne(dc => dc.Producto)
+            //    .WithMany(p => p.DetalleCompras)  // Asegúrate de que haya una propiedad 'DetallesCompra' en Producto
+            //    .HasForeignKey(dc => dc.prductID);
+
+            //modelBuilder.Entity<DetalleCompra>()
+            //    .HasOne(dc => dc.compras)
+            //    .WithMany(c => c.DetalleCompras) // Asegúrate de que haya una propiedad 'DetallesCompra' en Compra
+            //    .HasForeignKey(dc => dc.IDOrder);
+            //modelBuilder.Entity<DetalleCompra>()
+            //.Property(c => c.Precio)
+            //.HasColumnType("decimal(18,4)");  // Define el tipo de columna SQL
+            //modelBuilder.Entity<DetalleCompra>()
+            //    .Property(col => col.productName).HasMaxLength(80);
 
 
             // Configurar la llave primaria compuesta para DetalleCompra
