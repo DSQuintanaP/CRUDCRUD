@@ -1,7 +1,7 @@
 ﻿@model CRUDCRUD.Models.Compras
 
 @{
-    ViewData["Title"] = "Crear Compra";
+    ViewData["Title"] = "Create";
 }
 
 <h1>Crear Compra</h1>
@@ -32,7 +32,7 @@
             {
                 <tr>
                     <td>
-                        <select asp-for="DetalleCompras[@i].prductID" class="form-control" asp-items="ViewBag.Productos"></select>
+                        <select asp-for="DetalleCompras[@i].prductID" class="form-control" asp-items="ViewBag.Productos"></select> 
                     </td>
                     <td>
                         <input asp-for="DetalleCompras[@i].Cantidad" class="form-control" />

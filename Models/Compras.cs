@@ -2,6 +2,7 @@
 using CRUDCRUD.Data;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace CRUDCRUD.Models
 {
@@ -29,6 +30,7 @@ namespace CRUDCRUD.Models
         public DateOnly fecha { get; set; }
         public int Cantidad { get; set; }
         public decimal totalValue { get; set; }
-        public ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
+        public virtual Cliente? IDCustomerNavigation { get; set; }
+        public List<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
     }
 }

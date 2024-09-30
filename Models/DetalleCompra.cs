@@ -24,10 +24,11 @@ namespace CRUDCRUD.Models
         // Propiedades adicionales
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
+        
 
         // Navegación a Producto
         [ForeignKey("prductID")]
-        public Producto Producto { get; set; } = new Producto();
+        public Producto? Producto { get; set; } = new Producto();
 
         // Navegación a Compra
         [ForeignKey("IDOrder")]
@@ -35,7 +36,7 @@ namespace CRUDCRUD.Models
 
 
 
-
+        
 
 
         //public int DetalleID { get; set; }

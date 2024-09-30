@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +61,7 @@ namespace CRUDCRUD.Controllers
             };
 
             ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName"); // Lista de clientes
-            ViewData["Productos"] = new SelectList(_context.Productos, "ProductoID", "ProductName"); // Lista de productos para los detalles
+            ViewData["Productos"] = new SelectList(_context.Productos, "prductID", "productName"); // Lista de productos para los detalles
             return View(compra); // Pasamos el objeto compra inicializado a la vista
         }
 
@@ -79,6 +80,8 @@ namespace CRUDCRUD.Controllers
                 {
                     detalle.IDOrder = compra.IDOrder; // Asignar el IDOrder a los detalles
                     _context.Add(detalle);
+                    _context.Add(detalle);
+                    _context.detallecompra.Count().Equals(1);
                 }
 
                 await _context.SaveChangesAsync();
@@ -86,25 +89,9 @@ namespace CRUDCRUD.Controllers
             }
 
             ViewData["IDCustomer"] = new SelectList(_context.clientes, "IDCustomer", "customerName", compra.IDCustomer);
-            ViewData["Productos"] = new SelectList(_context.Productos, "ProductoID", "ProductName");
+            ViewData["prductID"] = new SelectList(_context.Productos, "prductID", "productName");
             return View(compra);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -238,17 +225,7 @@ namespace CRUDCRUD.Controllers
             ViewData["Productos"] = new SelectList(_context.Productos, "prductID", "productName");
             return View(compra);
         }
-
-
-
-
-
-
-
-
-
-
-
+        
         //// GET: Compras/Edit/5
         //public async Task<IActionResult> Edit(int? id)
         //{
